@@ -17,7 +17,7 @@ import dask
 from mailib.toolbox.geo import cart2pol
 from mailib.toolbox.meteo import Ev
 from maihr_config import Rib_conf #, Maihr_Conf # To export to rodolfo
-# from downscaling_ribeirao.statmod_articleII import predict_stamod_rib, predict_csf_posses
+from downscaling_ribeirao.statmod_articleII import predict_stamod_rib, predict_csf_posses
 
 from dateutil.relativedelta import relativedelta
 
@@ -215,21 +215,21 @@ class write_input_sib2(luigi.Task):
     res_path = rib_conf.res_path
 
     chunck_month_by = 6  # +2 no final
-
-    def requires(self):
-        tasks = {}
-
-        # article
-        project_name = 'stamod_rib'
-        version_name = 'articleII'
-        #
-        # years = range(self.From_year, self.To_year)
-        # for year in years:
-
-        tasks = predict_stamod_rib(project_name=project_name, version_name=version_name,
-                                             From=str(self.From_year), To=str(self.To_year), decrease_res_by=4,temporal_model_kind = 'dnn',) # Todo warning evennot set correclty the system continue to work
-
-        return tasks
+    #
+    # def requires(self):
+    #     tasks = {}
+    #
+    #     # article
+    #     project_name = 'stamod_rib'
+    #     version_name = 'articleII'
+    #     #
+    #     # years = range(self.From_year, self.To_year)
+    #     # for year in years:
+    #
+    #     tasks = predict_stamod_rib(project_name=project_name, version_name=version_name,
+    #                                          From=str(self.From_year), To=str(self.To_year), decrease_res_by=4,temporal_model_kind = 'dnn',) # Todo warning evennot set correclty the system continue to work
+    #
+    #     return tasks
 
     def output(self):
 
@@ -239,10 +239,12 @@ class write_input_sib2(luigi.Task):
     def run(self):
 
 
+
         ######################
         # Climate Input
         ######################
-        xr_clim_paths = glob.glob(os.path.dirname(self.input().path)+'/clim_*.nc')
+        # xr_clim_paths = glob.glob(os.path.dirname(self.input().path)+'/clim_*.nc')
+        xr_clim_paths = glob.glob(str(rib_conf.clim_input)+'/clim_*.nc')
         xr_clim = xarray.open_mfdataset(xr_clim_paths)
         xr_clim = xr_clim.reindex(time=sorted(xr_clim.time.values))
         xr_clim = xr_clim.load() # WARNING this could blow up the memmory
@@ -252,7 +254,8 @@ class write_input_sib2(luigi.Task):
         ######################
         # Rain
         ######################
-        file_cpc = self.framework_path / 'stamod_rib/data/precip_1979a2017_CPC_AS.nc'
+        # file_cpc = self.framework_path / 'stamod_rib/data/precip_1979a2017_CPC_AS.nc'
+        file_cpc = self.framework_path / '/data/precip_1979a2017_CPC_AS.nc'
         xr_rain_cpc = xarray.open_dataarray(str(file_cpc))
         xr_rain_cpc.coords['lon'].values = (xr_rain_cpc.coords['lon'].values + 180) % 360 - 180
         xr_rain_cpc = xr_rain_cpc.sel(lat=xr_clim.lat.values[0], lon=xr_clim.lon.values[0], method='nearest')

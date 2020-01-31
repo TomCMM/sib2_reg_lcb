@@ -1,0 +1,35 @@
+dropbox: locating interpreter
+dropbox: logging to /tmp/dropbox-antifreeze-iWl6Ei
+dropbox: initializing
+dropbox: initializing python 3.7.5
+dropbox: setting program path '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/dropbox'
+dropbox: setting python path '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278:/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/python-packages.zip'
+dropbox: python initialized
+dropbox: running dropbox
+dropbox: setting args
+dropbox: applying overrides
+dropbox: running main script
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/cryptography.hazmat.bindings._constant_time.cpython-37m-x86_64-linux-gnu.so'
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/cryptography.hazmat.bindings._openssl.cpython-37m-x86_64-linux-gnu.so'
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/cryptography.hazmat.bindings._padding.cpython-37m-x86_64-linux-gnu.so'
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/psutil._psutil_linux.cpython-37m-x86_64-linux-gnu.so'
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/psutil._psutil_posix.cpython-37m-x86_64-linux-gnu.so'
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/apex._apex.cpython-37m-x86_64-linux-gnu.so'
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/tornado.speedups.cpython-37m-x86_64-linux-gnu.so'
+Another instance of Dropbox (2829) is running!
+dropbox: locating interpreter
+dropbox: logging to /tmp/dropbox-antifreeze-8Y6vwP
+dropbox: initializing
+dropbox: initializing python 3.7.5
+dropbox: setting program path '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/dropbox'
+dropbox: setting python path '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278:/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/python-packages.zip'
+dropbox: python initialized
+dropbox: running dropbox
+dropbox: setting args
+dropbox: applying overrides
+dropbox: running main script
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/cryptography.hazmat.bindings._constant_time.cpython-37m-x86_64-linux-gnu.so'
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/cryptography.hazmat.bindings._openssl.cpython-37m-x86_64-linux-gnu.so'
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/cryptography.hazmat.bindings._padding.cpython-37m-x86_64-linux-gnu.so'
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/psutil._psutil_linux.cpython-37m-x86_64-linux-gnu.so'
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/psutil._psutil_posix.cpython-37m-x86_64-linux-gnu.so'
