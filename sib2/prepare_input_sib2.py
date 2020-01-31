@@ -17,7 +17,7 @@ import dask
 from mailib.toolbox.geo import cart2pol
 from mailib.toolbox.meteo import Ev
 from maihr_config import Rib_conf #, Maihr_Conf # To export to rodolfo
-from downscaling_ribeirao.statmod_articleII import predict_stamod_rib, predict_csf_posses
+# from downscaling_ribeirao.statmod_articleII import predict_stamod_rib, predict_csf_posses
 
 from dateutil.relativedelta import relativedelta
 
