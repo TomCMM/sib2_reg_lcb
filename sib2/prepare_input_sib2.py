@@ -216,7 +216,7 @@ class write_input_sib2(luigi.Task):
 
     chunck_month_by = 6  # +2 no final
     #
-    # def requires(self):
+    # def requires(self): # TODO WARNING REMOVE TO RUN FOR RODOLFO
     #     tasks = {}
     #
     #     # article
@@ -237,9 +237,6 @@ class write_input_sib2(luigi.Task):
         return luigi.LocalTarget(filename)
 
     def run(self):
-
-
-
         ######################
         # Climate Input
         ######################

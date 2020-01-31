@@ -33,3 +33,6 @@ dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.2
 dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/cryptography.hazmat.bindings._padding.cpython-37m-x86_64-linux-gnu.so'
 dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/psutil._psutil_linux.cpython-37m-x86_64-linux-gnu.so'
 dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/psutil._psutil_posix.cpython-37m-x86_64-linux-gnu.so'
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/apex._apex.cpython-37m-x86_64-linux-gnu.so'
+dropbox: load fq extension '/home/thomas/.dropbox-dist/dropbox-lnx.x86_64-89.4.278/tornado.speedups.cpython-37m-x86_64-linux-gnu.so'
+Another instance of Dropbox (4325) is running!
