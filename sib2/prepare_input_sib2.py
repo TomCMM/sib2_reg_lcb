@@ -207,9 +207,9 @@ class write_input_sib2(luigi.Task):
     To_year = luigi.Parameter()
 
     rib_conf = Rib_conf()
-    conf = Maihr_Conf()
+    # conf = Maihr_Conf()
 
-    framework_path = conf.framework_path
+    framework_path = rib_conf.framework_path
     sib_folder =rib_conf.sib_folder # folder with the executable
     out_path = rib_conf.out_path
     res_path = rib_conf.res_path
@@ -351,5 +351,3 @@ if __name__ == '__main__':
 
     rib_conf = Rib_conf()
     luigi.build([write_all_inputs(From_year=rib_conf.From_year, To_year= rib_conf.To_year)], local_scheduler=False, workers=1) # Does notwork with 4 workers
-
-
