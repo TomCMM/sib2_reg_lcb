@@ -20,7 +20,7 @@ import subprocess
 from pyfiglet import Figlet
 
 from maihr_config import Rib_conf
-from sib2.prepare_input_sib2 import write_all_inputs # Prepare all inputs for sib2
+# from sib2.prepare_input_sib2 import write_all_inputs # Prepare all inputs for sib2 # TODO WARNING RODOLFO export
 
 def popen_timeout(command, timeout, cwd=None):
     p = Popen(command, stdout=PIPE, stderr=PIPE,cwd=cwd,shell=True, preexec_fn=os.setsid)
