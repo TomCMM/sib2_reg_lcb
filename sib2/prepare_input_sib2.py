@@ -22,8 +22,8 @@ from downscaling_ribeirao.statmod_articleII import predict_stamod_rib, predict_c
 from dateutil.relativedelta import relativedelta
 
 
-from multiprocessing.pool import ThreadPool
-dask.config.set(pool=ThreadPool(20))
+# from multiprocessing.pool import ThreadPool
+# dask.config.set(pool=ThreadPool(20))
 
 def write_data2(lat, lon, point, xr, xrain, output_folderpath, files_sib2):
     output_folderpath = str(output_folderpath)
