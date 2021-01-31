@@ -1,0 +1,58 @@
+ @.. Sib2 input file: IO files, veg and soil parameters, control flags
+ @   Offline parameters for Atlantic Forest(adap AmazForest)
+@.. vegn. type------------------------------------------------(i,j)
+     99
+@.. VEGN. TYPE-DEPENDENT STATIC PARAMETERS--------------------(IVTYPE)
+     z2   z1  vcover  chil 
+   31.0  1.0    0.98  0.1
+   rootd   phc
+   12.0   -200.0
+   (tran(iw,1), iw=1,2), (tran(iw,2), iw=1,2), ilive
+   (ref (iw,1), iw=1,2), (ref (iw,2), iw=1,2), ilive
+   0.0170  0.2000  0.0010  0.0010
+   0.0700  0.5000  0.1600  0.3900
+   effcon  gradm  binter  respcp  atheta  btheta
+   0.08    15.0  0.01     0.015   0.95   0.95
+   trda  trdm  trop    slti   hlti  shti  hhti
+   1.30 328.16 298.16  0.2  288.16 0.3  313.16
+   acoef  bcoef  ccoef   *(unplugged in 11/12/95)
+   0.000  0.000  0.000
+@.. SOIL TYPE, SOIL DEPTH, SOIL REFLECTANCES(VIS,NIR)---------(I,J)
+    istype  sodep   (soref(iwave),iwave=1,2)
+     99      2.0        0.11   0.225
+@.. SOIL TYPE-DEPENDENT STATIC PARAMETERS---------------------(ISTYPE)
+   iinf    slope   xcs  jqng   xkb  jesq  jdpsi  jkcon  jsys  jjgs  jqini
+    3      0.01    1.0    1    0.0    1     2      1     1     2      1    
+ zdepth  extfrac   bee   phsat  satco   poros   www initial (1,nlayer)
+  0.02	1	7.12	-0.2	5.00E-06	0.4500	0.9
+  0.38	0.3	7.12	-0.2	5.00E-06	0.4500	0.9
+  0.6	0.4	7.12	-0.2	5.00E-06	0.4500	0.9
+  1	0.3	7.12	-0.2	5.00E-06	0.4500	0.9
+  1	0	7.12	-0.2	5.00E-06	0.4500	0.9
+  2	0	7.12	-0.2	5.00E-06	0.4500	1
+@.. VEGN. : PHENOLOGICALLY-VARYING APARC ( FROM NDVI )--------(I,J,T)
+  fparc
+  0.999  X 0.601 0.29263
+@.. DERIVED OR SECONDARY PARAMETERS---------------------------(I,J,T)
+   vmax0      gmudmu  green     zlt
+   0.0000818   1.0    0.90      5.6
+    z0d    dd     cc1      cc2
+    1.571   26.606  8.12    727.80
+@.. PARAMETERS REQUIRED FOR RASITE OPERATION ONLY
+  corb1   corb2     ha     g1     g2      g3    ztz0   zwind  zmet
+  7.89   387.49   23.63  1.449  0.787  0.787  11.785  60.00  60.00
+@.. SITE LOCATION, NUMBER OF ITERATIONS, INITIAL CONDITIONS (NON-VEGINC)
+  dtt   itrunk   ilw  ico2m facco2 irespg
+  3600.   20      2     0    1.0   1
+ zlat   zlong  time  month  day   year    maxit   nyfirst    nylast   
+ -23.3  -45.1  23.5   12    01.  2008.  10000000 14060100  14083123
+   tc        tg      td     ta     tm     ht    qa
+  300.0    300.0    300.0  300.0  300.0    0.   5.5
+@.. MONTHLY PHENOLOGY greeness, lai, vmax
+ 0.97  0.97  0.97  0.97  0.95  0.95  0.95  0.97  0.97  0.97  0.97  0.97
+ 4.00  4.00  4.00  4.00  4.00  4.00  4.00  4.00  4.00  4.00  4.00  4.00  
+ 100.  100.  100.  100.  100.  100.  100.  100.  100.  100.  100.  100.  
+d.. INPUT FILES ........................................................
+ 'data2'
+
+

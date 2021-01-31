@@ -24,8 +24,7 @@ import subprocess
 from pyfiglet import Figlet
 from shutil import copyfile
 
-
-
+from plot_sibcat_output import plot_spatial
 from sibcat_conf import Rib_conf
 # from sib2.prepare_input_sib2 import write_all_inputs # Prepare all inputs for sib2 # TODO WARNING RODOLFO export
 
@@ -344,6 +343,9 @@ def SibCat(data1nc_path,data2nc_path,outpath, nb_process=50 ):
     # data1nc_path = luigi.Parameter()
     # data2nc_path = luigi.Parameter()
 
+    f = Figlet(font='standard')
+    print(f.renderText('SibCat'))
+
     nb_var_sib = 43
 
     # #spring
@@ -363,7 +365,6 @@ def SibCat(data1nc_path,data2nc_path,outpath, nb_process=50 ):
     # xr_clim_input = xr_clim_input.sel(lat=xr_clim_input.lat.values,lon=xr_clim_input.lon.values)
     # points = np.array(xr_clim_input.points.values).flatten().tolist()
     # points = list(range(1836)) # Size of the extracted xr in get_xr
-
 
     ############
     # Run all points
@@ -443,24 +444,24 @@ def SibCat(data1nc_path,data2nc_path,outpath, nb_process=50 ):
     ds = xr.concat([df for df in dfs if df is not None],dim='points') # TODO i don't know why their is some None in the list
     print('done concat')
     # ds =ds.chunk({'variable':1,'points':200})
-    print('chunk')
-    print(ds.sel(variable='Ta').isel(time=5000).mean())
-    print('reindex')
+    # print('chunk')
+    # print(ds.sel(variable='Ta').isel(time=5000).mean())
+    # print('reindex')
     ds = ds.reindex(points=range(len(ds_data2.points))) # TODO Points need to have only 2 dimensions lat/loon
-
-    print(ds.sel(variable='Ta').isel(time=5000).mean())
-    print(ds)
+    #
+    # print(ds.sel(variable='Ta').isel(time=5000).mean())
+    # print(ds)
     print('assign coord')
     ds = ds.assign_coords(points=ds_data2.points)
-    print(ds.sel(variable='Ta').isel(time=5000).mean())
-    print(ds)
+    # print(ds.sel(variable='Ta').isel(time=5000).mean())
+    # print(ds)
     # ds = ds.assign_coords(points = ds_data2.points)
     print(ds)
     print('unstack')
     ds = ds.unstack('points')
-    print(ds.sel(variable='Ta').isel(time=5000).mean())
-    print('done')
-    print(ds)
+    # print(ds.sel(variable='Ta').isel(time=5000).mean())
+    # print('done')
+    # print(ds)
     # xarr = np.dstack(dfs)
     #
     # xarr_reshape = xarr.reshape(len(idx),len(vars),len(ds_data2.lat), len(ds_data2.lon))
@@ -475,6 +476,64 @@ def SibCat(data1nc_path,data2nc_path,outpath, nb_process=50 ):
     #
     # ds = ds.to_dataset(dim='var') # convert to dataset t be compatible with R
     # outpath = os.path.dirname(self.output().path) +'/sib2_rib' + self.data1nc_path + '_' + str(year) + '.nc'
+
+
+
+
+    ds = xr.open_dataarray(sib2outpath)
+
+    coords_units = {
+        'Tm': 'temperatura do ar observada (K)',
+         'em': 'pressão de vapor d’água observada (hPa)',
+         'um': 'velocidade horizontal do vento observado (m.s-1)',
+         'Ki':'irradiância de onda curta incidente observada (W.m-2)',
+         'alb':'albedo',
+         'Ldwn':'irradiância de onda longa incidente (W.m-2)',
+         'Lupw': 'irradiância de onda longa emergente (W.m-2)',
+         'Rn_C':'saldo de radiação calculado (W.m-2)',
+         'H_C': 'fluxo de calor sensivel calculado (W.m-2)',
+         'LE_C':'fluxo de calor latente calculado (W.m-2)',
+         'G_C':'fluxo de calor no solo calculado (W.m-2)',
+         'J_C':'fluxo de energia armazenado na coluna de ar do dossel (W.m-2)',
+         'Fc_C':'fluxo total de CO2 (μmolCO2.m-2.s-1)',
+         'Rsc_C': 'efluxo de Co2 do solo  (μmolCO2.m-2.s-1)',
+         'An_C': 'Assinilacao liquida de Co2 (μmolCO2.m-2.s-1)',
+         'u*_C': 'velocidade de atrito (m.s-1)',
+         'Td':'Temperatura do solo (C)',
+         'W1_C':'grau de saturacao da umidade do solo 1 camada (m3.m-3)',
+         'W2_C':'grau de saturacao da umidade do solo 1 camada (m3.m-3)',
+         'W3_C':'grau de saturacao da umidade do solo 1 camada (m3.m-3)',
+         'W4_C':'grau de saturacao da umidade do solo 1 camada (m3.m-3)',
+         'W5_C':'grau de saturacao da umidade do solo 1 camada (m3.m-3)',
+         'W6_C':'grau de saturacao da umidade do solo 1 camada (m3.m-3)',
+         'W7_C':'grau de saturacao da umidade do solo 1 camada (m3.m-3)',
+         'W8_C':'grau de saturacao da umidade do solo 1 camada (m3.m-3)',
+         'W9_C':'grau de saturacao da umidade do solo 1 camada (m3.m-3)',
+         'W10_C':'grau de saturacao da umidade do solo 1 camada (m3.m-3)',
+         'gc': 'Conductancia do dossel (mm.s-1)',
+         'Evpt':'Evapotranspiracao (mm)',
+         'Trans': 'Transpiracao (mm)',
+         'Esoil': 'Evaporacao do solo (mm)',
+         'Einterc': 'Evaporacao por interceptacao (mm)',
+         'Prec': 'Precipitacao (mm)',
+         'Rss': 'Escoamento por drenagem vertical para aquifero (mm)',
+         'Rs': 'Escoamento de superficie (mm)',
+         'Runoff': 'Escoamento total = croff + qng (mm)',
+         'PARidir':'Irradiancia PAR incidente direta (W.m-2)',
+         'PARidif':'Irradiancia PAR incidente difusa (W.m-2)',
+         'albPARdir':'Albedo PAR de radiacao direta (adimensional)',
+         'albPARdif':'Albedo PAR de radiacao difusa (adimensional)',
+         'Tc': 'temperatura do dossel',
+         'Ta': 'temperatura do ar',
+         'PPB':'prod primária bruta'}
+
+    ds = ds.sel(variable = list(coords_units.keys()))
+    ds = ds.assign_coords(long_name=('variable',list(coords_units.values())))
+
+
+    ds = ds.isel(variable=slice(1,None)) # TODO to remove, Remove the date
+
+
     print(outpath)
     print(ds)
     ds.to_netcdf(outpath)
@@ -488,25 +547,24 @@ def SibCat(data1nc_path,data2nc_path,outpath, nb_process=50 ):
     #     os.remove(str(file))
 
 if __name__ =='__main__':
-    # f = Figlet(font='standard')
-    # print(f.renderText('SibCat'))
-    #
+
     rib_conf = Rib_conf()
 
-    # write_data2(data2nc_path=rib_conf.data2nc_path)
+    write_data2(data2nc_path=rib_conf.data2nc_path)
 
     outfilepath ='/vol0/thomas.martin/framework/stamod_rib/sib2_ribeirao_pos/pontual_ribeirao/out_nc/sibcat_test.nc'
 
-    # SibCat(data1nc_path= rib_conf.data1nc_path,
-    #        data2nc_path= rib_conf.data2nc_path,
-    #        nb_process=80,
-    #        outpath=outfilepath)
+    SibCat(data1nc_path= rib_conf.data1nc_path,
+           data2nc_path= rib_conf.data2nc_path,
+           nb_process=80,
+           outpath=outfilepath)
 
-    ds = xr.open_dataarray(outfilepath)
-    ds = ds.chunk(chunks={'lat':20,'lon':20})
-    ds.isel(time=-1).sel( variable='Ta').plot()
-    plt.savefig('/vol0/thomas.martin/maihr/sib2_reg_lcb/sib2/fig/test2.png')
-    print('done sibcat')
+
+    sib2outpath ='/vol0/thomas.martin/framework/stamod_rib/sib2_ribeirao_pos/pontual_ribeirao/out_nc/sibcat_test.nc'
+    figoutpath='/vol0/thomas.martin/maihr/sib2_reg_lcb/sib2/fig/sibcat_output_spatial.png'
+    plot_spatial(outfilepath, figoutpath)
+
+
 
 
 
